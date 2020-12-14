@@ -29,7 +29,7 @@ lr = 0.0002
 beta1 = 0.5
 
 # Number of GPUs available. Use 0 for CPU mode.
-ngpu = 0
+ngpu = 1
 
 class Model(nn.Module):
     def __init__(self, device):
@@ -151,7 +151,7 @@ class Model(nn.Module):
         # grid = vutils.make_grid(fake, padding=2, normalize=True)
         new_img =  torchvision.utils.make_grid(fake).numpy().transpose(1,2,0)
         plt.axis('off')
-        plt.imshow(new_img)
+        plt.imshow((new_img * 255).astype(np.uint8))
         plt.savefig(fname, bbox_inches='tight', pad_inches=0)
         plt.close()
 
